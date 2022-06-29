@@ -1,0 +1,11 @@
+{
+    "java.project.sourcePaths": [
+        "eurekaServer\\src\\main\\java",
+        "eurekaServer\\src\\main\\resources",
+        "eurekaServer\\src\\test",
+        "gateWay\\src\\main\\java",
+        "gateWay\\src\\main\\resources",
+        "gateWay\\src\\test"
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
+}
