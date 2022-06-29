@@ -1,5 +1,6 @@
-# Created by https://www.toptal.com/developers/gitignore/api/gradle,java,macos,windows,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=gradle,java,macos,windows,visualstudiocode
+
+# Created by https://www.toptal.com/developers/gitignore/api/java,gradle,macos,windows,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,gradle,macos,windows,visualstudiocode
 
 ### Java ###
 # Compiled class file
@@ -134,6 +135,28 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
-# End of https://www.toptal.com/developers/gitignore/api/gradle,java,macos,windows,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/java,gradle,macos,windows,visualstudiocode
 
-gradle/
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
