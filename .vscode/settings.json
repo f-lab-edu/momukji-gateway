@@ -3,9 +3,9 @@
         "eurekaServer\\src\\main\\java",
         "eurekaServer\\src\\main\\resources",
         "eurekaServer\\src\\test",
-        "gateWay\\src\\main\\java",
-        "gateWay\\src\\main\\resources",
-        "gateWay\\src\\test"
+        "gateway\\src\\main\\java",
+        "gateway\\src\\main\\resources",
+        "gateway\\src\\test"
     ],
     "java.configuration.updateBuildConfiguration": "interactive"
 }

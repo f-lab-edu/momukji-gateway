@@ -1,0 +1,14 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka-server #MSA에서 이 서비스를 식별하는 id
+
+#스프링 유레카 서버 구축
+eureka:
+  client:
+    register-with-eureka: false #클라이언트로써 디스커버리 서버에 등록하는 것. 이 프로젝트는 server이므로 false
+    fetch-registry: false #클라이언트로써 eureka 서버에서 eureka 레지스트리 정보를 가져올지 여부를 설정
+    service-url:
+        default-zone: http://localhost:8761/eureka/
