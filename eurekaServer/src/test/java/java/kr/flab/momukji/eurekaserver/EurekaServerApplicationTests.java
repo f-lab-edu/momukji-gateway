@@ -1,10 +1,10 @@
-package java.kr.flab.momukji.eurekasever;
+package java.kr.flab.momukji.eurekaserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EurekaseverApplicationTests {
+class EurekaserverApplicationTests {
 
 	@Test
 	void contextLoads() {
