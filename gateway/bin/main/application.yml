@@ -12,3 +12,43 @@ eureka:
     fetch-registry: true #클라이언트로써 eureka 서버에서 eureka 레지스트리 정보를 가져올지 여부를 설정
     service-url:
         default-zone: http://localhost:8761/eureka/ #유레카 서버에 해당하는 url을 써줘야 함. 
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true #actuator로 circuitbreak 상태확인
+  endpoints:
+    web:
+      exposure:
+        include: "*" # 테스트를 위해 actuator 전체 노출
+  endpoint:
+    health:
+      show-details: always
+
+# 10번 요청에서 실패율이 50%가 넘으면 서킷브레이커가 Open하고 Open 10초 후에 다시 Half-Open 상태로 전환
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowType : COUNT_BASED #사용자가 설정한 호출 횟수와 실패율을 기반으로 CircuitBreaker의 상태를 변경하는 모드
+        slidingWindowSize: 10
+        failureRateThreshold: 50 #실패한 호출에 대한 임계값(백분율). 이 값을 초과하면 서킷이 열린다.
+        waitDurationInOpenState : 10s # 열림 상태를 유지하는 시간, 해당 시간이후 반열림 상태로 변경된다.
+        registerHealthIndicator : true #
+    instances:
+      circuit:
+        baseConfig: default
+
+  # 설정의 의미는 총 30초 동안 10초 간격으로 서비스 호출을 3번한다는 의미이다.
+  retry:
+    configs:
+      default:
+        max-attempts: 3 #최대 시도 가능 횟수 (기본값 3)
+        waitDuration : 2s   # 재시도 호출 간격 (기본값 500m/s)
+        retryExceptions : # 리트라이할 익셉션 정의
+          - java.lang.IllegalArgumentException
+          - org.springframework.web.reactive.function.client.WebClientResponseException
+          - org.springframework.web.reactive.function.client.WebClientResponseException$InternalServerError
+    instances:
+      circuit:
+        baseConfig: default
