@@ -17,13 +17,23 @@ public class GatewayApplication {
 
 	@Bean
 	public RouteLocator routes(RouteLocatorBuilder builder) {
+
 		return builder.routes()
 			.route(p -> p
-				.path("/api")
-				.uri("http://localhost:8080/"))
+				.path("/main/**")
+				.filters(f -> f.rewritePath("/main", "/api"))
+				.uri("lb://main"))
 			.route(p -> p
-				.path("/apiRider")
-				.uri("http://localhost:8080/"))
+				.path("/auth/**")
+				.filters(f -> f.rewritePath("/auth/", "/api/"))
+				.uri("lb://auth"))
+			.route(p -> p
+				.path("/user/**")
+				.filters(f -> f.rewritePath("/user", "/api"))
+				.uri("lb://user")
+				
+			)
+				
 			.build();
 	}
 
