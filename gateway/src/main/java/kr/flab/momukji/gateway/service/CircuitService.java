@@ -29,13 +29,4 @@ public class CircuitService {
         log.info("getIllegal start");
         call.illegalException();
     }
-
-    private void illegalFallback(Throwable t){
-        log.error("Retry 중 오류");
-    }
-
-    private Mono<String> helloFallback(String name, Throwable t){
-        log.error("Fallback : "+ t.getMessage());
-        return Mono.just("fallback data");
-    }
 }
