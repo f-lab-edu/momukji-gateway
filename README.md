@@ -1,6 +1,6 @@
 # :fork_and_knife:momukji-gateway
 ## :pushpin: 개요
-머먹지 프로젝트는 배달 기반의 음식 주문 서비스 입니다. 
+모먹지 프로젝트는 배달 기반의 음식 주문 서비스 입니다. 
 Microservice Architecture의 전반적인 이해 및 패턴 구현을 위해 제작되었으며, 현재 해당 momukji-gateway 깃 저장소에는 Gateway와 Eureka Server 만을 다루고 있습니다. 프로젝트의 주요 기능을 다루고 있는 Microservices는 다른 깃 저장소인 momukji-service 에 구현되었습니다. 진행 상황에 있어 세분화된 기록을 위해 저장소를 분리하였습니다. 프로젝트 진행에 따라 ReadMe 업데이트 예정입니다.
 * momukji-service : https://github.com/f-lab-edu/momukji-services
 ## :pushpin: 목표 및 사용 기술 스택 
