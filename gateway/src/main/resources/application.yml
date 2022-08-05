@@ -4,6 +4,30 @@ server:
 spring:
   application:
     name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: main
+          predicates:
+            - Path=/main/**
+          filters:
+            - RewritePath=/main, /api
+            - CustomAuthFilter
+          uri: lb://main
+        - id: auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            - RewritePath=/auth/, /api/
+          uri: lb://auth
+        - id: user
+          predicates:
+            - Path=/user/**
+          filters:
+            - RewritePath=/user, /api
+          uri: lb://user
+      default-filters:
+        - LoggingFilter
 
 #스프링 유레카 클라이언트 구축
 eureka:
@@ -52,3 +76,4 @@ resilience4j:
     instances:
       circuit:
         baseConfig: default
+
