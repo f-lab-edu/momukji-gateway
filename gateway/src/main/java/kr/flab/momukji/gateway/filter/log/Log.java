@@ -5,7 +5,6 @@ import java.time.Instant;
 import org.springframework.data.annotation.Id;
 
 import lombok.Builder;
-import lombok.ToString;
 
 @Builder
 public class Log {
