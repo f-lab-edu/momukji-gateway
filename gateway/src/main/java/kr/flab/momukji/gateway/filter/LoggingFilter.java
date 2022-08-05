@@ -32,7 +32,7 @@ public class LoggingFilter extends AbstractGatewayFilterFactory<LoggingFilter.Co
             ServerHttpResponse response = exchange.getResponse();
             
             String method = request.getMethodValue();
-            String uri = request.getURI().toString();
+            String uri = request.getURI().getPath();
             String parameters = request.getQueryParams().toString();
             String ip = request.getRemoteAddress().getHostString();
             Instant requestedTimestamp = Instant.now();
