@@ -7,5 +7,5 @@
         "gateway\\src\\main\\resources",
         "gateway\\src\\test"
     ],
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "automatic"
 }
