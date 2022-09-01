@@ -19,4 +19,8 @@ public class LogService {
     public List<Log> findAll() {
         return logRepository.findAll();
     }
+
+    public long getOrderNumber(Long storeId) {
+        return logRepository.countOrderNumber("/api/order", "200", storeId);
+    }
 }
