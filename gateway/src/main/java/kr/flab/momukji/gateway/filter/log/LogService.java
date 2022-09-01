@@ -20,7 +20,7 @@ public class LogService {
         return logRepository.findAll();
     }
 
-    public long getOrderNumber(Long storeId) {
-        return logRepository.countOrderNumber("/api/order", "200", storeId);
+    public long getOrderAmount(Long storeId) {
+        return logRepository.countOrders(storeId);
     }
 }

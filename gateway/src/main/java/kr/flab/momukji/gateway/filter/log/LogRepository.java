@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.Query;
 
 public interface LogRepository extends MongoRepository<Log, String> {
 
-    @Query(value = "{$and: [{'uri':?0}, {'status':?1}, {'requestBody.storeId':?2}]}", count = true)
-    long countOrderNumber(String uri, String status, Long storeId);
+    @Query(value = "{$and: [{'uri':'/api/order'}, {'status':'200'}, {'requestBody.storeId':?0}]}", count = true)
+    long countOrders(Long storeId);
 }
