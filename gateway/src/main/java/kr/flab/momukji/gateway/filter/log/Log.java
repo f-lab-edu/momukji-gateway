@@ -4,6 +4,8 @@ import java.time.Instant;
 
 import org.springframework.data.annotation.Id;
 
+import com.mongodb.DBObject;
+
 import lombok.Builder;
 
 @Builder
@@ -13,7 +15,8 @@ public class Log {
     public String id;
     public String method;
     public String uri;
-    public String parameters;
+    public DBObject requestParams;
+    public DBObject requestBody;
     public String ip;
     public Instant requestedTimestamp;
     public Instant responsedTimestamp;

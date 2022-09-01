@@ -27,6 +27,7 @@ spring:
             - RewritePath=/user, /api
           uri: lb://user
       default-filters:
+        - CacheBodyFilter
         - LoggingFilter
 
 #스프링 유레카 클라이언트 구축
