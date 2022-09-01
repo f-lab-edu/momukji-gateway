@@ -14,7 +14,7 @@ public class LogController {
     
     private final LogService logService;
 
-    @GetMapping("/checkOrderNumber")
+    @GetMapping("/checkOrderAmount")
     public String getOrderCount(@RequestBody OrderLogDto orderLogDto) {
         return logService.getOrderAmount(orderLogDto.getStoreId()) + "개 주문되었습니다.";
     }
