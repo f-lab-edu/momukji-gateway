@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: momukji-gateway-app
+  labels:
+    app: webapp
+  namespace: default
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: webapp
+  externalIPs:
+  - 172.16.0.7
+  - 101.79.9.40
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: momukji-gateway-rs
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: webapp
+      tier: app
+  template:
+    metadata:
+      labels:
+        app: webapp
+        tier: app
+    spec:
+      containers:
+        - name: momukji-gateway
+          image: momukji-gateway:44437b6
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+              protocol: TCP
