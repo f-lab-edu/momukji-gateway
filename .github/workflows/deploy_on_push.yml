@@ -1,0 +1,40 @@
+name: Deploy on Push
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_URL }}
+        port: ${{ secrets.SERVER_PORT }}
+        username: ${{ secrets.SERVER_ID }}
+        password: ${{ secrets.SERVER_PW }}
+        envs: GITHUB_SHA
+        script: |
+          rm -rf momukji-gateway/
+          git clone https://github.com/deepredk/momukji-gateway.git
+          cd momukji-gateway/gateway
+          rm src/main/resources/application.yml
+          cp ../../secrets/application-gateway.yml src/main/resources/application.yml
+          ./gradlew build -x test
+          docker build -t momukji-gateway:${GITHUB_SHA::7} .
+          docker save momukji-gateway:${GITHUB_SHA::7} | ctr -a /run/k3s/containerd/containerd.sock -n=k8s.io images import -
+          kubectl delete -f momukji-gateway.yml
+          sh change_version.sh ${GITHUB_SHA::7}
+          kubectl apply -f momukji-gateway.yml
+          cd ../eurekaServer
+          rm src/main/resources/application.yml
+          cp ../../secrets/application-eureka.yml src/main/resources/application.yml
+          ./gradlew build -x test
+          docker build -t momukji-eureka:${GITHUB_SHA::7} .
+          docker save momukji-eureka:${GITHUB_SHA::7} | ctr -a /run/k3s/containerd/containerd.sock -n=k8s.io images import -
+          kubectl delete -f momukji-eureka.yml
+          sh change_version.sh ${GITHUB_SHA::7}
+          kubectl apply -f momukji-eureka.yml
